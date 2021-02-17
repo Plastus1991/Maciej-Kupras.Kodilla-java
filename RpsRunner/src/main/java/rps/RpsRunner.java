@@ -6,24 +6,18 @@ import java.util.Scanner;
 
 public class RpsRunner {
 
-
     public String drawChoice(int number) {
 
         ArrayList<String> choiceList = new ArrayList<>();
 
-        choiceList.add("");
         choiceList.add("ROCK");
         choiceList.add("PAPER");
         choiceList.add("SCISSORS");
 
-
-        return choiceList.get(number);
+        return choiceList.get(number-1);
     }
 
     public void playGame() {
-
-        RpsRunner rps = new RpsRunner();
-
 
         boolean end = false;
         while (!end) {
@@ -32,8 +26,8 @@ public class RpsRunner {
             int computerWINS = 0;
             System.out.println("Give number of rounds followed by a victory");
             Scanner s = new Scanner(System.in);
-            int rounds;
-            rounds = s.nextInt();
+
+            int rounds = s.nextInt();
             System.out.println("PRESS [1] FOR ROCK, [2] FOR PAPER, OR [3] FOR SCISSORS");
 
             while (playerWINS != rounds && computerWINS != rounds) {
@@ -47,23 +41,21 @@ public class RpsRunner {
                 computerChoice = random.nextInt(3) + 1;
 
                 if (playerChoice == computerChoice) {
-                    System.out.println("PLAYER CHOICE IS " + rps.drawChoice(playerChoice));
-                    System.out.println("COMPUTER CHOICE IS " + rps.drawChoice(computerChoice));
+                    System.out.println("PLAYER CHOICE IS " + drawChoice(playerChoice));
+                    System.out.println("COMPUTER CHOICE IS " + drawChoice(computerChoice));
                     System.out.println("Remiss");
                 }
 
                 if (playerChoice != computerChoice) {
 
-
-                    if (printResult(playerChoice, computerChoice)) {
+                    if (whoWon(playerChoice, computerChoice)) {
                         playerWINS++;
                     }
 
-                    if (!printResult(playerChoice, computerChoice)) {
+                    if (!whoWon(playerChoice, computerChoice)) {
                         computerWINS++;
 
                     }
-
                 }
                 System.out.println(playerWINS);
                 System.out.println(computerWINS);
@@ -81,7 +73,6 @@ public class RpsRunner {
                 playOrNot = sc.next().charAt(0);
             }
 
-
             if (exit == playOrNot) {
                 end = true;
             }
@@ -92,14 +83,10 @@ public class RpsRunner {
         }
     }
 
+        public boolean whoWon ( int player, int computer){
 
-        public boolean printResult ( int player, int computer){
-
-            RpsRunner rps = new RpsRunner();
-
-            System.out.println("PLAYER CHOICE IS " + rps.drawChoice(player));
-            System.out.println("COMPUTER CHOICE IS " + rps.drawChoice(computer));
-
+            System.out.println("PLAYER CHOICE IS " +drawChoice(player));
+            System.out.println("COMPUTER CHOICE IS " + drawChoice(computer));
 
             if ((player == 1 && computer == 2) || (player == 2 && computer == 3) || (player == 3 && computer == 1)) {
                 System.out.println("COMPUTER WON!!!");
@@ -108,10 +95,8 @@ public class RpsRunner {
 
             System.out.println("PLAYER WON!!!");
             return true;
-
         }
     }
-
 
 class Main {
     public static void main(String args[]) {
