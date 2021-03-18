@@ -1,52 +1,55 @@
 package com.kodilla.good.patterns.flight;
 
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Flights {
 
-    private ArrayList<FlightList> FligtsList = new ArrayList<>();
+    private Map<String, ArrayList> flightMap = new HashMap<>();
 
-
-    public void addFrom(FlightList flightList) {
-        FligtsList.add(flightList);
-    }
-
-
-    public List<FlightList> getFrom(String fromCity) {
-        return FligtsList.stream()
-                .filter(e -> e.getFlightFrom().equals(fromCity))
-                .collect(Collectors.toList());
-    }
-
-    public List<FlightList> getTo(String toCity) {
-        return FligtsList.stream()
-                .filter(e -> e.getFlightTo().equals(toCity))
-                .collect(Collectors.toList());
+    public void addToMap(String nameAirPort, ArrayList<AirPort> airPorts) {
+        flightMap.put(nameAirPort, airPorts);
 
     }
 
-    public List<String> fromToBy(String from, String to, String by) {
+    public List<ArrayList> getFrom(String from) {
 
-        List<FlightList> fromList = FligtsList.stream()
-                .filter(e -> e.getFlightFrom().equals(from) && e.getFlightTo().equals(by))
+        return flightMap.entrySet().stream()
+                .filter(e -> e.getKey().equals(from))
+                .map(Map.Entry::getValue)
                 .collect(Collectors.toList());
+    }
 
-        List<FlightList> toList = FligtsList.stream()
-                .filter(e -> e.getFlightFrom().equals(by) && e.getFlightTo().equals(to))
+    public List<String> getTo(AirPort to) {
+
+        return flightMap.entrySet().stream()
+                .filter(e -> e.getValue().contains(to))
+                .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
+    }
 
-        List<String> FligthList = new ArrayList<>();
-        for (FlightList f1 : fromList) {
-            for (FlightList f2 : toList) {
-                FligthList.add(f1.toString() + "--" + f2.toString());
+    public List<String> getToBy(String from, AirPort by, AirPort to) {
+
+        ArrayList<String> list = new ArrayList<>();
+        for (Map.Entry<String, ArrayList> entry : flightMap.entrySet()) {
+            if (entry.getValue().contains(to)) {
+                list.add(entry.getKey());
+
             }
+
+
         }
-        return FligthList;
+        return list;
     }
 }
+
+
+
+
+
+
+
 
 
 
