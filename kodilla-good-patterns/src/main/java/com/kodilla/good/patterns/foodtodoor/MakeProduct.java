@@ -2,7 +2,7 @@ package com.kodilla.good.patterns.foodtodoor;
 
 public class MakeProduct {
 
-    public void MakeProducts() {
+    public void makeProducts() {
 
         Product product = new Product("Product1", 12, 33);
         Product product1 = new Product("Product2", 5, 22);
