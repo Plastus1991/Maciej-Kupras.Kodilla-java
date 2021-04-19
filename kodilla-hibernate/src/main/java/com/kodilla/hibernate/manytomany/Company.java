@@ -6,8 +6,16 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@NamedNativeQuery(
+        name = "Company.retrieveThreeStringCompany",
+        query = "SELECT * FROM COMPANIES WHERE COMPANY_NAME like 'com%'",
+        resultClass = Company.class
+)
+
+
 @Entity
-@Table(name = "Companies")
+@Table(name = "COMPANIES")
 public class Company {
 
     private int id;
