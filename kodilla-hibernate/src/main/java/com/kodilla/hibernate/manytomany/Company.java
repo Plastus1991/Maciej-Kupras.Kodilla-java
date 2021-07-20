@@ -13,6 +13,12 @@ import java.util.List;
         resultClass = Company.class
 )
 
+@NamedNativeQuery(
+        name = "Company.retrieveByAnyString",
+        query = "SELECT * FROM COMPANIES WHERE COMPANY_NAME like  '%com%'",
+        resultClass = Company.class
+)
+
 
 @Entity
 @Table(name = "COMPANIES")

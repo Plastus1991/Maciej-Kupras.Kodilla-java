@@ -5,13 +5,17 @@ import com.kodilla.hibernate.manytomany.Employee;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.TransactionScoped;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+
 @SpringBootTest
+
 public class CompanyDaoTestSuite {
 
     @Autowired
@@ -58,9 +62,13 @@ public class CompanyDaoTestSuite {
         assertNotEquals(0, greyMatterId);
 
         //CleanUp
+        companyDao.deleteAll();
+
+
     }
 
     @Test
+
     void testThreeStringCompany() {
         //Given
         Employee johnSmith = new Employee("John", "Smith");
@@ -84,14 +92,15 @@ public class CompanyDaoTestSuite {
         List<Employee> particularLastName = emplyeeDao.retrieveEmployeesParicularLastname("Smith");
 
         //Then
-        //Clean
 
-        try {
+
+       try {
             assertEquals(1, particularLastName.size());
             assertEquals(1, treeStringCompany.size());
         } finally {
             companyDao.deleteById(id);
             companyDao.deleteById(id2);
+
         }
     }
 }

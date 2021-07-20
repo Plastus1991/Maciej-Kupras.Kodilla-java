@@ -7,6 +7,8 @@ import com.kodilla.hibernate.invoice.Product;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 
 @SpringBootTest
+
 public class InvoiceDaoTestSuite {
     @Autowired
     private InvoiceDao invoiceDao;

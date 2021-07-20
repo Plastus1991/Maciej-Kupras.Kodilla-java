@@ -7,6 +7,7 @@ import com.kodilla.hibernate.tasklist.dao.TaskListDao;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+
 public class TaskDaoTestSuite {
 
     @Autowired
@@ -45,6 +47,7 @@ public class TaskDaoTestSuite {
         taskDao.deleteById(id);
     }
 
+
     @Test
     void testTaskDaoFindByDuration() {
         //Given
@@ -60,6 +63,9 @@ public class TaskDaoTestSuite {
 
         assertEquals(1, readTask.size());
 
+        //clean
+        taskDao.deleteById(task.getId());
+
     }
 
     @Test
@@ -74,6 +80,9 @@ public class TaskDaoTestSuite {
 
         //Then
         assertNotEquals(0, id);
+
+        //clean
+        taskDao.deleteById(id);
     }
 
     @Test
@@ -157,5 +166,7 @@ public class TaskDaoTestSuite {
             taskListDao.deleteById(id);
         }
     }
+
+
 
 }
