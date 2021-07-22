@@ -25,7 +25,6 @@ public class TaskQueue implements Observable{
         for(Observer observer : observers) {
             observer.update(this);
         }
-
     }
 
     @Override
