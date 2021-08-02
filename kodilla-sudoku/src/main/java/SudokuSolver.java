@@ -28,14 +28,13 @@ public class SudokuSolver {
         }
 
         printBoard(board);
-
     }
 
     private static int[][] addNumberToBoard(int[][] board) {
 
         Scanner input = new Scanner(System.in);
-        for (int a = 0; a < 3; a++) {
 
+        for (int a = 0; a < 3; a++) {
             System.out.println("Enter the row number  ");
             int row = input.nextInt();
             System.out.println("Enter the column number");
@@ -49,7 +48,6 @@ public class SudokuSolver {
         return board;
 
     }
-
 
     private static void printBoard(int[][] board) {
         for (int row = 0; row < GRID_SIZE; row++) {
